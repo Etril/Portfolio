@@ -1,0 +1,14 @@
+@use "../../variables.scss" as * ;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: $main-font;
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}

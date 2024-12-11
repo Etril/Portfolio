@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import CardProjet from "../../components/CardProjet/CardProjet";
+import CardDashboard from "../../components/CardDashboard/CardDashboard";
 import Filter from "../../components/Filter/Filter";
 import projets from "../../data/projets.json";
-import "./Home.scss";
+import "./Dashboard.scss";
 
-function Home() {
+function Dashboard() {
   const [tag, setchosenTag] = useState(null);
 
   const handleTagClick = (tag) => {
@@ -30,7 +30,7 @@ function Home() {
           {tag === null
             ? projets.map(({ title, cover, snippet, index }) => (
                 <div key={index}>
-                  <CardProjet
+                  <CardDashboard
                     title={title}
                     cover={cover}
                     snippet={snippet}
@@ -41,7 +41,7 @@ function Home() {
                 .filter((projet) => projet.tags.includes(tag))
                 .map(({title, cover, description, index}) => (
                   <div key={index}>
-                    <CardProjet
+                    <CardDashboard
                       title={title}
                       cover={cover}
                       description={description}
@@ -58,4 +58,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;

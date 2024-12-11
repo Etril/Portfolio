@@ -1,0 +1,15 @@
+@use "../../variables.scss" as *;
+
+.login {
+    width: 1240px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+
+    &__title {
+        font-size: 36px;
+    }
+}
+ 

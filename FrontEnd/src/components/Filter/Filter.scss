@@ -1,0 +1,16 @@
+@use "../../variables.scss" as *;
+
+.filter {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    button {
+        font-family: $main-font;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 20px;
+        padding: 10px;
+    }
+}

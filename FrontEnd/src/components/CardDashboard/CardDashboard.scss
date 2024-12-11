@@ -1,0 +1,16 @@
+@use "../../variables.scss" as *;
+
+.card {
+
+    background-color: $secondary-background-color;
+    border-radius: 10px 10px 0px 0px;
+
+    &__image {
+        object-fit: cover;
+        width: 545px;
+        height: 306px;
+        border-radius: 10px;
+    }
+
+    
+}
