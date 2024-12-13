@@ -28,25 +28,28 @@ function Dashboard() {
         </div>
         <div className="home__projets-container">
           {tag === null
-            ? projets.map(({ title, cover, snippet, index }) => (
-                <div key={index}>
+            ? projets.map(({ id, title, cover, snippet}) => (
+              <div key={id}>
+
+              <CardDashboard
+                title={title}
+                cover={cover}
+                snippet={snippet}
+                id= {id}
+              />
+            </div>
+              ))
+            : projets
+                .filter((projet) => projet.tags.includes(tag))
+                .map(({id, title, cover, snippet,}) => (
+                  <div key={id}>
                   <CardDashboard
                     title={title}
                     cover={cover}
                     snippet={snippet}
+                    id={id}
                   />
                 </div>
-              ))
-            : projets
-                .filter((projet) => projet.tags.includes(tag))
-                .map(({title, cover, description, index}) => (
-                  <div key={index}>
-                    <CardDashboard
-                      title={title}
-                      cover={cover}
-                      description={description}
-                    />
-                  </div>
                 ))}
         </div>
       </section>

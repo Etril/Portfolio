@@ -1,0 +1,32 @@
+@use "../../variables.scss" as *;
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $main-color;
+    border-radius: 10px;
+    height: 25px;
+
+    p {
+      font-family: $main-font;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 19.96px;
+      text-align: center;
+      color: white;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+  }
+}

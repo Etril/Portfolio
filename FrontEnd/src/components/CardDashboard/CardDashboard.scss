@@ -1,16 +1,52 @@
 @use "../../variables.scss" as *;
 
 .card {
+  background-color: $secondary-background-color;
+  border-radius: 10px 10px 0px 0px;
+  position: relative;
 
-    background-color: $secondary-background-color;
+  &__image {
+    object-fit: cover;
+    width: 545px;
+    height: 306px;
     border-radius: 10px 10px 0px 0px;
+  }
 
-    &__image {
-        object-fit: cover;
-        width: 545px;
-        height: 306px;
-        border-radius: 10px;
-    }
+  &__open {
+    position: absolute;
+    border:none;
+    top: 0px;
+    left: 5px;
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    color: white;
+  }
 
-    
+  &__delete {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  &__close {
+    top: 5px;
+  }
+
+  &__modale {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+    border-radius: 10px;
+    width: 1140px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 }
+

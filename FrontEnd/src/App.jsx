@@ -8,6 +8,7 @@ import FicheProjet from './pages/Fiche-Projet/FicheProjet.jsx';
 import Erreur from './pages/Erreur/Erreur.jsx';
 import Login from './pages/Login/Login.jsx';
 import Dashboard from './pages/Dashboard/Dashboard.jsx';
+import FicheProjetAdmin from './pages/Fiche-Projet-Admin/FicheProjetAdmin.jsx';
 
 function App() {
 
@@ -21,7 +22,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/fiche-projet/:id" element={<FicheProjet />} />
+        <Route path="/fiche-projet/:choice" element={<FicheProjet />} />
+        <Route path="/fiche-projet-admin/:choice" element ={<FicheProjetAdmin/>} />
         <Route path="/login" element= {<Login />} />
         <Route path="/dashboard" element= {<Dashboard/>} />
         <Route path="*" element={<Erreur />} />

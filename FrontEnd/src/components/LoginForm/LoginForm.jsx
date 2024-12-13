@@ -44,7 +44,7 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="field__submit">
+        <button type="submit" className="form__submit">
           Se connecter
         </button>
       </div>

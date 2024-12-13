@@ -1,0 +1,34 @@
+@use "../../variables.scss" as *;
+
+.fiche {
+    width: 1240px;
+    margin: auto;
+    
+    &__details{
+        display: grid;
+        grid-template-columns: 610px auto;
+        grid-template-rows: auto auto auto;
+        column-gap: 38px;
+
+        .blurb {
+            width: 1024px;
+            grid-row-start: 1;
+        }
+
+        .tags {
+            grid-row-start: 2;
+            justify-self: left;
+        }
+
+        .tools {
+            justify-self:right;
+            grid-row-start: 2;
+        }
+
+        .description {
+            grid-row-start: 3;
+            justify-self: left;
+            width: 1240px;
+        }
+    }
+}
