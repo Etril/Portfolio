@@ -1,0 +1,107 @@
+@use "../../variables.scss" as *;
+
+.modaleAjout {
+  font-family: $main-font;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  position: relative;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    &--coverimage {
+      height: 150px;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    &--tag {
+      background-color: $main-color;
+      height: 25px;
+      display: inline-block;
+      color: white;
+      padding: 5px 10px 5px 10px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #333;
+      position: relative;
+
+      p {
+        color: white;
+        margin: 0px 10px 0px 10px;
+      }
+    }
+
+    &--tool {
+      background-color: $secondary-color;
+      height: 25px;
+      display: inline-block;
+      color: white;
+      padding: 5px 10px 5px 10px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #333;
+      position: relative;
+
+      p {
+        color: white;
+        margin: 0px 10px 0px 10px;
+      }
+    }
+
+    &--remove {
+      font-family: $main-font;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.678);
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      right: 2px;
+      cursor: pointer;
+    }
+
+    &--pictures {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+
+    }
+
+    &--picture {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    &--picitem {
+        position: relative;
+        width: 100px;
+    }
+
+    &--picremove {
+      font-family: $main-font;
+      background: none;
+      border: none;
+      color: rgba(216, 17, 17, 0.678);
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      right: 2px;
+      cursor: pointer;
+    }
+  }
+}

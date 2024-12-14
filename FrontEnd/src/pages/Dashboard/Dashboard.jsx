@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import CardDashboard from "../../components/CardDashboard/CardDashboard";
 import Filter from "../../components/Filter/Filter";
+import CardAjout from "../../components/CardAjout/CardAjout";
 import projets from "../../data/projets.json";
 import "./Dashboard.scss";
 
@@ -27,6 +28,7 @@ function Dashboard() {
           <Filter onTagClick={handleTagClick} />
         </div>
         <div className="home__projets-container">
+          <CardAjout />
           {tag === null
             ? projets.map(({ id, title, cover, snippet}) => (
               <div key={id}>
