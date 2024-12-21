@@ -1,14 +1,15 @@
 import "./CardProjet.scss"
 import { Link } from "react-router-dom"
 
-function CardProjet ({id, title, cover, snippet}) {
+function CardProjet ({title, cover, snippet, index, _id}) {
     return (
-        <div className="card">
-            <Link to={`/fiche-projet/${id}`}>
+        <div className={`card ${index % 2 === 0 ? "even" : "odd"}`}>
+            <Link to={`/fiche-projet/${_id}`}>
             <img src= {cover} alt= {`Couverture du projet ${title}`} className="card__image"></img>
-            </Link> 
+           
             <h3 className="card__title"> {title} </h3>
             <p className="card__snippet"> {snippet} </p>
+            </Link> 
             </div>
     )
 }

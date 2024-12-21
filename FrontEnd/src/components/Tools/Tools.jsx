@@ -5,8 +5,8 @@ function Tools ({tools}) {
     return ( 
     <div className="tools">
             <h3 className="tools__title"> Technologies: </h3>
-            {tools.map ((tool) => (
-                <div className="tools__container">
+            {tools.map ((tool, index) => (
+                <div key={index} className="tools__container">
                     <p className="tools__tool"> {tool} </p>
                     </div>
             ))}

@@ -1,65 +1,99 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import CardDashboard from "../../components/CardDashboard/CardDashboard";
 import Filter from "../../components/Filter/Filter";
 import CardAjout from "../../components/CardAjout/CardAjout";
-import projets from "../../data/projets.json";
+import Projects from "../../components/Projects/Projects";
+import Profil from "../../components/Profil/Profil";
 import "./Dashboard.scss";
 
 function Dashboard() {
   const [tag, setchosenTag] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [projets, setProjets] = useState([]);
+
+
+
+  const getCookie = (x) => {
+    const match = document.cookie.match(
+      new RegExp("(^| )" + x + "=([^;]+)")
+    );
+    return match ? match[2] : null;
+  };
+
+   useEffect(() => {
+      const token = getCookie('token');
+      if (token) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    }, []);
 
   const handleTagClick = (tag) => {
     setchosenTag(tag);
   };
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  const getProjets= () => {axios.get(`${apiUrl}/api/projets/`)
+    .then((response) => {
+      setProjets(response.data)
+    })}
+
+    
+
+  useEffect(() => {
+     getProjets();
+    }, []);
+
   return (
+    isAuthenticated ? (
     <main className="home">
       <section className="home__about">
-        <h2> PROFIL </h2>
-        <p> Ceci est une introduction visant à mettre en avant mon profil et à expliquer ma recherche d'emploi</p>
-        <p> Vous pouvez retrouver mon parcours détaillé ainsi que mon CV en cliquant sur ce <Link to="/parcours"> lien </Link> </p>
+      <Profil />
       </section>
       <section className="home__projets">
-        <h2> MES PROJETS </h2>
-        <p> Cette partie présente les différents projets que j'ai réalisé ou sur lesquels je travaille actuellement. </p>
-        <p> Le filtre ci-dessous permet de sélectionner les projets par mots-clés, le bouton Tous permet de réinitialiser ce filtre.</p>
-        <div className="home__projets-filtre">
-          <Filter onTagClick={handleTagClick} />
+      <Projects />
+      <div className="home__projets-filtre">
+          <Filter onTagClick={handleTagClick} projets= {projets} />
         </div>
         <div className="home__projets-container">
-          <CardAjout />
+          <CardAjout onUpdate= {getProjets} />
           {tag === null
-            ? projets.map(({ id, title, cover, snippet}) => (
-              <div key={id}>
+            ? projets.map(({ _id, title, cover, snippet}, index, ) => (
+              <div key={index}>
 
               <CardDashboard
                 title={title}
                 cover={cover}
                 snippet={snippet}
-                id= {id}
+                _id= {_id}
+                index= {index}
+                onUpdate={getProjets}
               />
             </div>
               ))
             : projets
                 .filter((projet) => projet.tags.includes(tag))
-                .map(({id, title, cover, snippet,}) => (
-                  <div key={id}>
+                .map(({_id, title, cover, snippet}, index) => (
+                  <div key={index}>
                   <CardDashboard
                     title={title}
                     cover={cover}
                     snippet={snippet}
-                    id={id}
+                    _id= {_id}
+                    index={index}
+                    onUpdate={getProjets}
                   />
                 </div>
                 ))}
         </div>
       </section>
-      <section className="home__contact">
-        <h2> MES CONTACTS </h2>
-        <p> Cette section vise à laisser mes informations pour pouvoir être contacté facilement </p>
-      </section>
-    </main>
+    </main> ) :
+    (<Navigate to="/login" replace />)
   );
 }
 

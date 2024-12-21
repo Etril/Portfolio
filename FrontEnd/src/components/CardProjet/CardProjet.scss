@@ -1,17 +1,58 @@
 @use "../../variables.scss" as *;
 
+.even {
+    background-color: $secondary-background-color;
+}
+
+.odd {
+    background-color: $tertiary-background-color;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
 .card {
 
-    background-color: $secondary-background-color;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 10px 10px;
     height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    padding-bottom: 30px;
 
     &__image {
-        object-fit: cover;
+        object-fit:contain;
         width: 545px;
         height: 306px;
         border-radius: 10px 10px 0px 0px;
     }
 
+    &__title {
+        padding-left: 20px;
+      }
     
+      &__snippet {
+        padding-left: 20px;
+      }
+    
+}
+
+@media (max-width: 768px) {
+  header {
+    width: 100%;
+    box-sizing: border-box;
+
+    nav {
+      gap: 15px;
+
+      a{
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 17.11px;
+        text-align: right;
+        text-transform: uppercase;
+      }
+    }
+
+  }
 }

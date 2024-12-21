@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Modal from 'react-modal';
 import ModaleAjout from "../ModaleAjout/ModaleAjout";
 
-function CardAjout () {
+function CardAjout ({onUpdate}) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -38,7 +38,7 @@ function CardAjout () {
             
             <Modal isOpen={isOpen} onRequestClose={closeModal} contentLabel="Modale d'ajout" className="cardAjout__modale">
                 <button className="cardAjout__close" onClick={closeModal}> X </button>
-                <ModaleAjout />
+                <ModaleAjout onUpdate={onUpdate} />
             </Modal>
             </div>
     )

@@ -1,13 +1,40 @@
 @use "../../variables.scss" as *;
 
-.card {
+
+.even {
   background-color: $secondary-background-color;
-  border-radius: 10px 10px 0px 0px;
-  position: relative;
+}
+
+.odd {
+  background-color: $tertiary-background-color;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+
+  border-radius: 10px 10px 10px 10px;
   height: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+  position: relative;
+
+  a {
+    text-decoration: none;
+  }
+
+  &__title {
+    padding-left: 20px;
+  }
+
+  &__snippet {
+    padding-left: 20px;
+  }
 
   &__image {
-    object-fit: cover;
+    object-fit: inside;
     width: 545px;
     height: 306px;
     border-radius: 10px 10px 0px 0px;
@@ -20,7 +47,7 @@
     left: 5px;
     font-size: 30px;
     cursor: pointer;
-    background: none;
+    background-color: black;
     color: white;
   }
 
@@ -34,9 +61,17 @@
     cursor: pointer;
   }
 
-  &__close {
-    top: 5px;
+    &__close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: 700;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      cursor: pointer;
   }
+
 
   &__modale {
     position: absolute;

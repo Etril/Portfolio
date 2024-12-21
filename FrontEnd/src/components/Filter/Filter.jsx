@@ -1,17 +1,25 @@
 import React from "react";
+import { useState } from "react";
 import "./Filter.scss"
-import projets from "../../data/projets.json"
 
-function Filter ({onTagClick}) {
+function Filter ({onTagClick, projets}) {
+
+    const [selectedTag, setSelectedTag] = useState(null);
+
     const tagsMap= projets.map((projets) => projets.tags).flat();
     const tagsSet = new Set(tagsMap);
     const tagsArray= Array.from(tagsSet);
+
+    const handleTagClick = (tag) => {
+        setSelectedTag(tag);  
+        onTagClick(tag);
+      };
  
     return (
         <div className="filter"> 
-        <button className="filter__all" onClick={() => onTagClick(null) }> Tous </button>
+        <button className={`filter__all ${selectedTag === null ? 'selected' : ''}`} onClick={() => handleTagClick(null) }> Tous </button>
             {tagsArray.map((tag, index) => (
-                <button key={index} className="filter__item" onClick={() => onTagClick(tag)}> 
+                <button key={index} className={`filter__item ${selectedTag === tag ? 'selected' : ''}`} onClick={() => handleTagClick(tag)}> 
                     {tag}
                 </button>
             ))}

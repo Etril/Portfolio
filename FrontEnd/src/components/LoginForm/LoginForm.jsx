@@ -1,23 +1,28 @@
 import "./LoginForm.scss";
-import { use } from "react";
+import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { replace, useNavigate } from "react-router";
 
 function LoginForm() {
-  const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (user === "admin" && password === "password") {
-      navigate("/dashboard");
+    axios.post(`${apiUrl}/api/auth/login`, {name, password})
+    .then ((response) => {
+      document.cookie= `token=${response.data.token}; path=/;`
+      navigate('/dashboard');
+      window.location.reload();
+    })
+    .catch ((erreur => {
+      setError("Identifiants incorrects")
     }
-    else {
-        setError("Informations incorrectes")
-    }
+  ))
   };
 
   return (
@@ -26,16 +31,16 @@ function LoginForm() {
     <form onSubmit={handleSubmit}>
       <div className="form">
         <div className="form__field">
-          <label for="user"> Nom d'utilisateur </label>
+          <label htmlFor="name"> Nom d'utilisateur </label>
           <input
             type="text"
-            value={user}
-            id="user"
-            onChange={(e) => setUser(e.target.value)}
+            value={name}
+            id="name"
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="form__field">
-          <label for="password"> Mot de passe </label>
+          <label htmlFor="password"> Mot de passe </label>
           <input
             type="password"
             name="password"

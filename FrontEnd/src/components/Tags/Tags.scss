@@ -5,6 +5,8 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+  margin-top: 10px;
+  flex-wrap: wrap;
 
   &__title {
     margin: 0;
@@ -17,6 +19,7 @@
     background-color: $main-color;
     border-radius: 10px;
     height: 25px;
+    
 
     p {
       font-family: $main-font;

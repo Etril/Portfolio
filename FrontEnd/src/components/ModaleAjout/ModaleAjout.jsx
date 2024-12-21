@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import "./ModaleAjout.scss";
+import "./ModaleAjout.scss"
+import axios from "axios";
 
-const ModaleAjout = () => {
+const ModaleAjout = ({onUpdate}) => {
+
   const [formData, setFormData] = useState({
     title: "",
     cover: "",
+    coverPreview: "",
     lien: "",
     snippet: "",
     description: "",
@@ -13,7 +16,20 @@ const ModaleAjout = () => {
     pictures: [],
     tagsInput: "",
     toolsInput: "",
+    picturesPreview: [],
   });
+
+  const [message, setMessage] = useState(null);
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  const getCookie = (x) => {
+    const match = document.cookie.match(
+      new RegExp("(^| )" + x + "=([^;]+)")
+    );
+    return match ? match[2] : null;
+  };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,12 +84,15 @@ const ModaleAjout = () => {
 
   const handleCoverChange = (e) => {
     const file = e.target.files[0];
+    console.log(file)
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
+        console.log(file);
         setFormData((prevData) => ({
           ...prevData,
-          cover: reader.result, 
+          coverPreview: reader.result, 
+          cover: file,
         }));
       };
       reader.readAsDataURL(file); 
@@ -82,33 +101,103 @@ const ModaleAjout = () => {
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
-    const newPictures = files.map((file) => ({
-      file: file,
-      preview: URL.createObjectURL(file),
-    }));
+    const newPicturesFiles=files;
+    const newPicturesPreview = files.map((file) => 
+     ({preview: URL.createObjectURL(file)}
+    ));
     setFormData((prevData) => ({
       ...prevData,
-      pictures: [...prevData.pictures, ...newPictures],
+      picturesPreview: [...prevData.picturesPreview, ...newPicturesPreview],
+      pictures: [...prevData.pictures, ...newPicturesFiles],
     }));
   };
 
   const handleRemovePicture = (index) => {
-    const newPictures = formData.pictures.filter((_, i) => i !== index);
-    setFormData((prevData) => ({
-      ...prevData,
-      pictures: newPictures,
-    }));
+    setFormData((prevData) => {
+      const newPictures = prevData.pictures.filter((_, i) => i !== index);
+      const newPicturesPreview = prevData.picturesPreview.filter((_, i) => i !== index);
+  
+      return {
+        ...prevData,
+        pictures: newPictures,
+        picturesPreview: newPicturesPreview,
+      };
+    });
   };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    const token = getCookie('token');
+    const fd= new FormData ();
+    const projetObject= {
+      title: `${formData.title}`,
+      description: `${formData.description}`,
+      lien: `${formData.lien}`,
+      snippet: `${formData.snippet}`,
+      tags: formData.tags,
+      tools: formData.tools,
+    }
+
+    fd.append ('Projet', JSON.stringify(projetObject));
+
+    fd.append('cover', formData.cover);
+    formData.pictures.forEach((file) => {
+      fd.append("pictures", file);
+    });
+    
+    axios.post(`${apiUrl}/api/projets`, fd,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      }
+    )
+    .then (() => {
+      setMessage("Projet ajouté");
+      onUpdate();
+    })
+    .catch ((error) => {
+      console.log(error)
+    })
+
+
   };
 
   return (
     <div className="modaleAjout">
       <h2 className="modaleAjout__titre"> Ajouter un projet</h2>
+      <p className="modaleAjout__message"> {message} </p>
       <form onSubmit={handleSubmit} className="modaleAjout__form">
+
+      <div className="modaleAjout__field--coverfield">
+          <div className="modaleAjout__field--coverinput">
+            <input
+              type="file"
+              id="cover"
+              name="cover"
+              accept="image/*"
+              onChange={handleCoverChange}
+            />
+            
+            {formData.cover && (
+              <div className="modaleAjout__field--cover">
+                <img
+                  src={formData.coverPreview}
+                  alt="Aperçu de la couverture"
+                  className="modaleAjout__field--coverimage"
+                />
+                <button type="button" onClick={handleRemoveCover} className="modaleAjout__field--coverremove">
+                  X
+                </button>
+              </div>
+            )}
+          </div>
+          <label htmlFor="cover" className="modaleAjout__field--coverlabel"> + Ajouter couverture</label>
+        </div>
+
         <div className="modaleAjout__field">
           <label htmlFor="title">Titre du projet</label>
           <input
@@ -121,30 +210,7 @@ const ModaleAjout = () => {
           />
         </div>
 
-        <div className="modaleAjout__field">
-          <label htmlFor="cover">Couverture (ajouter une image)</label>
-          <div className="modaleAjout__field--coverinput">
-            <input
-              type="file"
-              id="cover"
-              name="cover"
-              accept="image/*"
-              onChange={handleCoverChange}
-            />
-            {formData.cover && (
-              <div className="modaleAjout__field--cover">
-                <img
-                  src={formData.cover}
-                  alt="Aperçu de la couverture"
-                  className="modaleAjout__field--coverimage"
-                />
-                <button type="button" onClick={handleRemoveCover}>
-                  Supprimer l'image
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
+        
 
         <div className="modaleAjout__field">
           <label htmlFor="lien">Lien du projet</label>
@@ -194,9 +260,8 @@ const ModaleAjout = () => {
             <button
               type="button"
               onClick={handleAddTag}
-              disabled={!formData.tagsInput.trim()}
             >
-              Ajouter un tag
+              + Tag
             </button>
           </div>
           <div className="modaleAjout__field--taglist">
@@ -228,9 +293,8 @@ const ModaleAjout = () => {
             <button
               type="button"
               onClick={handleAddTool}
-              disabled={!formData.toolsInput.trim()}
             >
-              Ajouter un outil
+              +  Outil
             </button>
           </div>
           <div className="modaleAjout__field--toolslist">
@@ -250,7 +314,7 @@ const ModaleAjout = () => {
         </div>
 
         <div className="modaleAjout__field">
-          <label htmlFor="pictures">Ajoutez des images</label>
+          <p className="modaleAjout__field--pictitle"> Images du carrousel </p>
           <input
             type="file"
             id="pictures"
@@ -260,7 +324,7 @@ const ModaleAjout = () => {
             onChange={handleFileChange}
           />
           <div className="modaleAjout__field--pictures">
-            {formData.pictures.map((picture, index) => (
+            {formData.picturesPreview.map((picture, index) => (
               <div key={index} className="modaleAjout__field--picitem">
                 <img src={picture.preview} alt={`preview-${index}`} className="modaleAjout__field--picture"/>
                 <button
@@ -273,9 +337,12 @@ const ModaleAjout = () => {
               </div>
             ))}
           </div>
+          <label htmlFor="pictures" className="modaleAjout__field--piclabel">Ajouter des images</label>
         </div>
 
-        <button type="submit">Ajouter le projet</button>
+        <div className="modaleAjout__line"> </div>
+
+        <button type="submit" className="modaleAjout__submit"> Ajouter le projet</button>
       </form>
     </div>
   );

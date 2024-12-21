@@ -1,3 +1,5 @@
+@use "../../variables.scss" as *;
+
 header {
   width: 1240px;
   margin: auto;
@@ -9,6 +11,24 @@ header {
     display: flex;
     justify-content: space-between;
     gap: 50px;
+
+    button {
+      text-decoration: none;
+      color: #333333;
+      font-weight: 500;
+      font-size: 24px;
+      font-family: $main-font;
+      border: none;
+      background: none;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+      
+    }
 
     a {
       text-decoration: none;
@@ -23,5 +43,25 @@ header {
         text-decoration-skip-ink: none;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    width: 100%;
+    box-sizing: border-box;
+
+    nav {
+      gap: 15px;
+
+      a{
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 17.11px;
+        text-align: right;
+        text-transform: uppercase;
+      }
+    }
+
   }
 }
