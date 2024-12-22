@@ -1,0 +1,18 @@
+{
+  "index.html": {
+    "file": "assets/index-BVNG6pL8.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "css": [
+      "assets/index-hHU3k7Bo.css"
+    ],
+    "assets": [
+      "assets/CV2024-Cvj2bV-L.pdf"
+    ]
+  },
+  "src/assets/CV2024.pdf": {
+    "file": "assets/CV2024-Cvj2bV-L.pdf",
+    "src": "src/assets/CV2024.pdf"
+  }
+}
