@@ -10,8 +10,15 @@ const DATABASE= process.env.DATABASE
 
 const app=express();
 app.use(cors());
-app.use(helmet(
-  {crossOriginResourcePolicy: false}));
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' }, // Permet l'accès à des ressources provenant d'autres origines
+  contentSecurityPolicy: {
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      'img-src': ["'self'", 'https://res.cloudinary.com'], // Autoriser les images de Cloudinary
+    },
+  },
+}));
 
 
 mongoose.connect(DATABASE)
