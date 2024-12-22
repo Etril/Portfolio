@@ -17,7 +17,9 @@ function Statique() {
     setchosenTag(tag);
   };
 
-  useEffect (() => {axios.get("http://localhost:5000/api/projets/")
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  useEffect (() => {axios.get(`${apiUrl}/api/projets`)
     .then((response) => {
       setProjets(response.data)
     })}, []);

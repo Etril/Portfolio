@@ -20,20 +20,19 @@ mongoose.connect(DATABASE)
 
 
 app.use(express.json());
-
+app.use("/api/projets", projetRoutes);
+app.use("/api/auth", userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 if (process.env.NODE_ENV === 'production') {
-  // Servir les fichiers statiques du frontend
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-  // Envoyer index.html pour toutes les autres requêtes (si pas d'API)
+
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
   });
 }
 
-app.use("/api/projets", projetRoutes);
-app.use("/api/auth", userRoutes);
-app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 module.exports=app;
