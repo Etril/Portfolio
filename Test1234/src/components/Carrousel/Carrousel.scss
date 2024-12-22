@@ -1,0 +1,111 @@
+@use "../../variables.scss" as *;
+
+.carrousel {
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 30px;
+
+  &__image {
+    width: 1240px;
+    height: 640px;
+    border-radius: 25px;
+    object-fit: fill;
+  }
+
+  &__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.685);
+    color: white;
+
+    &--suivant {
+      right: 0;
+    }
+
+    &--precedent {
+      left: 0;
+    }
+  }
+
+  &__counter {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    font-family: $main-font;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.685);
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .carrousel {
+    margin-top: 40px;
+    margin-bottom: 20px;
+
+    &__image {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+
+    &__btn {
+      font-size: 24px;
+      padding: 5px;
+
+      &--suivant {
+        right: 5px;
+      }
+
+      &--precedent {
+        left: 10px;
+      }
+    }
+
+    &__counter {
+      font-size: 16px;
+      bottom: 15px;
+      padding: 5px 10px;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .carrousel {
+    margin-top: 30px;
+    margin-bottom: 15px;
+
+    &__image {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+    }
+
+    &__btn {
+      font-size: 20px;
+      padding: 5px;
+
+      &--suivant {
+        right: 15px;
+      }
+
+      &--precedent {
+        left: 10px;
+      }
+    }
+
+    &__counter {
+      font-size: 14px;
+      bottom: 10px;
+      padding: 3px 8px;
+    }
+  }
+}
