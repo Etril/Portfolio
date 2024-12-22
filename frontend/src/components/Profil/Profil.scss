@@ -1,0 +1,42 @@
+@use "../../variables.scss" as *;
+
+.profil {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: $tertiary-background-color;
+  padding: 30px;
+  box-sizing: border-box;
+  gap: 20px;
+  padding-bottom: 30px;
+  border-radius: 50px 50px 0px 0px;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  
+  .profil {
+    border-radius: 0px;
+}
+}
+
+@media (max-width: 767px) {
+  .profil {
+  border-radius: 0px;
+  margin-top: 20px;
+  text-align: justify;
+
+  &__title {
+    margin-bottom: 0px;
+  }
+  }
+}

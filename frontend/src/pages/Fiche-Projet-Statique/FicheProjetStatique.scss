@@ -1,0 +1,219 @@
+@use "../../variables.scss" as *;
+
+.fiche {
+    width: 1240px;
+    margin: auto;
+
+    &__buttons {
+        display: flex;
+        margin-bottom: 20px;
+        justify-content: space-between;
+    }
+
+    &__modify {
+
+    font-family: $main-font;
+    font-size: 16px;
+    background-color: $button-color;
+    color: white;
+    border: 1px solid $button-color;
+    height: 36px;
+    width: 150px;
+    border-radius: 50px;
+    text-align: center;
+    align-self: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    }
+
+    &__delete {
+    font-family: $main-font;
+    font-size: 16px;
+    background-color: rgb(209, 10, 10);
+    color: white;
+    border: 1px solid rgb(209, 10, 10);
+    height: 36px;
+    width: 150px;
+    border-radius: 50px;
+    text-align: center;
+    align-self: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    }
+    
+    &__details{
+        display: grid;
+        grid-template-columns: 610px auto;
+        grid-template-rows: auto auto auto;
+        column-gap: 38px;
+
+        .blurb {
+            width: 1024px;
+            grid-row-start: 1;
+        }
+
+        .tags {
+            grid-row-start: 2;
+            justify-self: left;
+        }
+
+        .tools {
+            justify-self:right;
+            grid-row-start: 2;
+        }
+
+        .description {
+            grid-row-start: 3;
+            justify-self: left;
+            width: 1240px;
+        }
+    }
+
+    &__close {
+        background: none;
+        border: none;
+        font-size: 20px;
+        font-weight: 700;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        cursor: pointer;
+    }
+
+    &__modale {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        max-height: 90vh;
+        overflow-y: auto;
+        transform: translate(-50%, -50%);
+        padding: 0px ;
+        border-radius: 10px;
+        width: 1140px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+};
+
+@media (max-width: 1024px) {
+  .fiche {
+    width: 100%;
+
+    &__details {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      column-gap: 20px;
+      row-gap: 20px;
+
+      .blurb {
+        width: 100%;
+        grid-row-start: 1;
+        justify-self: center;
+      }
+
+      .tags {
+        grid-row-start: 2;
+        justify-self: left;
+      }
+
+      .tools {
+        justify-self: left;
+        grid-row-start: 3;
+      }
+
+      .description {
+        grid-row-start: 4;
+        justify-self: left;
+        width: 100%;
+      }
+    }
+
+    &__modify {
+      
+        width: 130px;
+        height: 34px;
+        padding-left: 15px;
+        padding-right: 15px;
+      
+    }
+
+    &__delete {
+     
+    
+        width: 130px;
+        height: 34px;
+        padding-left: 15px;
+        padding-right: 15px;
+      
+    
+    }
+
+    &__buttons {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &__modale {
+      width:100%; 
+      max-height: 90vh; 
+      border-radius: 10px; 
+      padding: 15px; 
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .fiche {
+    width: 100%;
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .blurb {
+        width: 100%;
+      }
+
+      .tags {
+        align-self: flex-start;
+      }
+
+      .tools {
+        align-self: flex-start;
+      }
+
+      .description {
+        width: 100%;
+      }
+    }
+
+    &__buttons {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    
+    &__modify {
+      width: 110px;
+      height: 30px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &__delete {
+      width: 110px;
+      height: 30px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &__modale {
+      width: 100%; 
+      max-height: 90vh; 
+      border-radius: 8px; 
+      padding: 10px; 
+    }
+  }
+}
