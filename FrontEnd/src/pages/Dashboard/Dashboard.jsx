@@ -51,20 +51,20 @@ function Dashboard() {
 
   return (
     isAuthenticated ? (
-    <main className="home">
-      <section className="home__about">
+    <main className="dashboard">
+      <section className="dashboard__about">
       <Profil />
       </section>
-      <section className="home__projets">
+      <section className="dashboard__projets">
       <Projects />
-      <div className="home__projets-filtre">
+      <div className="dashboard__projets-filtre">
           <Filter onTagClick={handleTagClick} projets= {projets} />
         </div>
-        <div className="home__projets-container">
+        <div className="dashboard__projets-container">
           <CardAjout onUpdate= {getProjets} />
           {tag === null
             ? projets.map(({ _id, title, cover, snippet}, index, ) => (
-              <div key={index}>
+              <div key={index} className="dashboard__card-container">
 
               <CardDashboard
                 title={title}
@@ -79,7 +79,7 @@ function Dashboard() {
             : projets
                 .filter((projet) => projet.tags.includes(tag))
                 .map(({_id, title, cover, snippet}, index) => (
-                  <div key={index}>
+                  <div key={index} className="dashboard__card-container">
                   <CardDashboard
                     title={title}
                     cover={cover}

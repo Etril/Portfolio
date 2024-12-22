@@ -38,21 +38,27 @@
 }
 
 @media (max-width: 768px) {
-  header {
+
+  .card {
+
     width: 100%;
-    box-sizing: border-box;
+    height: auto;
+    padding-bottom: 12px;
 
-    nav {
-      gap: 15px;
-
-      a{
-        font-size: 0.875rem;
-        font-weight: 500;
-        line-height: 17.11px;
-        text-align: right;
-        text-transform: uppercase;
-      }
+    &__image {
+      width: 100%;
+      height: auto;
     }
 
+    &__title {
+      text-align: center;
+    }
+
+    &__snippet {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
   }
 }

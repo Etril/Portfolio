@@ -40,14 +40,14 @@ useEffect (() => {axios.get(`${apiUrl}/api/projets/`)
         <div className="home__projets-container">
           {tag === null
             ? projets.map(({_id, title, cover, snippet}, index) => (
-                <div key={index}>
+                <div key={index} className="home__card-container">
                     <CardProjet  title={title} cover={cover} snippet={snippet} index= {index} _id={_id} />
                 </div>
               ))
             : projets
                 .filter((projet) => projet.tags.includes(tag))
                 .map(({_id, title, cover, snippet }, index) => (
-                  <div key={index}>
+                  <div key={index} className="home__card-container">
                       <CardProjet
                         title={title}
                         cover={cover}

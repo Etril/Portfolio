@@ -27,7 +27,7 @@ function ModaleProjet({ title, snippet, _id, onUpdate }) {
         snippet: formSnippet
     }));
 
-    axios.put(`${apiUrl}/api/projets/${_id}`, fd, {
+    axios.put(`${apiUrl}/api/projets/simple/${_id}`, fd, {
         headers: {
             'Authorization': `Bearer ${token}`,
         }

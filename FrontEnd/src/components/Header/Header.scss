@@ -46,22 +46,47 @@ header {
   }
 }
 
+@media (max-width: 1024px) {
+  header {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 15px;
+
+    nav {
+      gap: 20px; 
+
+      a {
+        font-size: 1rem; 
+        font-weight: 500;
+        line-height: 20px;
+        text-align: left; 
+        text-transform: none; 
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   header {
     width: 100%;
     box-sizing: border-box;
+    padding: 0 15px; 
 
     nav {
       gap: 15px;
 
-      a{
-        font-size: 0.875rem;
+      a {
+        font-size: 0.875rem; 
         font-weight: 500;
         line-height: 17.11px;
         text-align: right;
         text-transform: uppercase;
       }
-    }
 
+      button {
+        font-size: 0.875rem;
+        text-transform: uppercase;
+      }
+    }
   }
 }

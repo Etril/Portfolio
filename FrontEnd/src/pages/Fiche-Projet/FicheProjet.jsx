@@ -38,7 +38,7 @@ function FicheProjet() {
 
   return (
     loading ? (<Loader />) : ( 
-    <main>
+    
         <main className="fiche">
           <div className="fiche__carrousel">
             <Carrousel images={projetChoisi.pictures} />
@@ -49,8 +49,7 @@ function FicheProjet() {
             <Tools tools={projetChoisi.tools} />
             <Description description = {projetChoisi.description} />
           </section>
-        </main>
-    </main>)
+        </main>)
     
   );
 }

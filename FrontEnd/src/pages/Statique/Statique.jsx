@@ -24,20 +24,20 @@ function Statique() {
 
 
   return (
-    <main className="home">
-      <section className="home__about">
+    <main className="statique">
+      <section className="statique__about">
       <Profil />
       </section>
-      <section className="home__projets">
+      <section className="statique__projets">
       <Projects />
-      <div className="home__projets-filtre">
+      <div className="statique__projets-filtre">
           <Filter onTagClick={handleTagClick} projets={projets}/>
         </div>
-        <div className="home__projets-container">
+        <div className="statique__projets-container">
           <CardAjoutStatique />
           {tag === null
             ? projets.map(({ id, title, cover, snippet, _id}, index) => (
-              <div key={id}>
+              <div key={id} className="statique__card-container">
 
               <CardStatique
                 title={title}
@@ -52,7 +52,7 @@ function Statique() {
             : projets
                 .filter((projet) => projet.tags.includes(tag))
                 .map(({id, title, cover, snippet, _id}, index) => (
-                  <div key={id}>
+                  <div key={id} className="statique__card-container">
                   <CardStatique
                     title={title}
                     cover={cover}

@@ -86,3 +86,34 @@
   }
 }
 
+@media (max-width: 768px) {
+
+  .card {
+
+    width: 100%;
+    height: auto;
+    padding-bottom: 12px;
+
+    &__image {
+      width: 100%;
+      height: auto;
+    }
+
+    &__title {
+      text-align: center;
+    }
+
+    &__snippet {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+
+    &__modale {
+      width: 100%;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
+}

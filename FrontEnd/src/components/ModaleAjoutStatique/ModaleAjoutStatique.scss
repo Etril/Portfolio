@@ -292,3 +292,99 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 1024px) {
+  .ModaleAjoutStatique {
+    padding: 15px; 
+
+    &__titre {
+      margin-top: 50px; 
+    }
+
+    input[type="text"],
+    input[type="url"] {
+      width: 100%; 
+    }
+
+    &__form {
+      gap: 15px; 
+    }
+
+    textarea {
+      width: 100%; 
+    }
+
+    &__field--coverfield {
+      height: 300px; 
+    }
+
+    &__field--coverimage {
+      width: 100%; 
+      height: auto; 
+    }
+
+    &__submit {
+      width: 200px; 
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ModaleAjoutStatique {
+    flex-direction: column; 
+    padding: 10px; 
+
+    &__titre {
+      margin-top: 30px; 
+      text-align: center; 
+    }
+
+    input[type="text"],
+    input[type="url"] {
+      font-size: 14px; 
+      height: 30px; 
+    }
+
+    textarea {
+      height: 120px; 
+      width: 100%; 
+    }
+
+    &__field--coverfield {
+      height: 200px; 
+    }
+
+    &__field--coverimage {
+        height: 184px; 
+        width: 320px;
+      
+    }
+
+    &__field--coverlabel {
+      width: 150px; 
+      height: 30px; 
+    }
+
+    &__submit {
+      height: 30px; 
+    }
+
+    &__field--pictures {
+      flex-direction: column; 
+      align-items: center; 
+    }
+
+    &__field--picture {
+      width: 50px; 
+      height: 70px; 
+    }
+
+    &__field--toolsinput button,
+    &__field--tagsinput button {
+      width: 100%; 
+      margin: 0;
+      margin-top: 20px;
+    }
+  }
+}
+

@@ -21,3 +21,22 @@
     margin: 0;
   }
 }
+
+@media (max-width: 1024px) {
+  
+  .profil {
+    border-radius: 0px;
+}
+}
+
+@media (max-width: 767px) {
+  .profil {
+  border-radius: 0px;
+  margin-top: 20px;
+  text-align: justify;
+
+  &__title {
+    margin-bottom: 0px;
+  }
+  }
+}

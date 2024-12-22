@@ -90,3 +90,59 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .parcours {
+    width: 100%; 
+
+    h2 {
+      text-align: center; 
+    }
+
+    &__etudes,
+    &__experiences {
+      padding: 20px; 
+      border-radius: 0px; 
+    }
+
+    &__qualities {
+      flex-direction: column; 
+    }
+
+    &__competences,
+    &__etre {
+      width: 100%; 
+      border-radius: 0px; 
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .parcours {
+    text-align: justify;
+
+
+    &__etudes,
+    &__experiences {
+      padding: 30px;
+      gap: 15px; 
+    }
+
+    &__competences {
+      p {
+        padding-right: 30px;
+        padding-left: 30px;
+      }
+    }
+    &__liste {
+      padding-right: 30px;
+    }
+
+  
+
+    &__qualities {
+      gap: 0px; 
+      margin-bottom: 0px;
+    }
+  }
+}

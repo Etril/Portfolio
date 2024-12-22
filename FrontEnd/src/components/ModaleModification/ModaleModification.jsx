@@ -3,7 +3,6 @@ import axios from "axios";
 import "./ModaleModification.scss";
 
 const ModaleModification = ({ projetChoisi, onUpdate }) => {
-
   const [formData, setFormData] = useState({
     title: "",
     cover: "",
@@ -17,7 +16,7 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
     tagsInput: "",
     toolsInput: "",
     picturesPreview: [],
-    existingPictures: projetChoisi? projetChoisi.pictures || [] : [],
+    existingPictures: projetChoisi ? projetChoisi.pictures || [] : [],
   });
 
   const [message, setMessage] = useState(null);
@@ -27,16 +26,14 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
       setFormData({
         title: projetChoisi.title || "",
         cover: projetChoisi.cover || "",
-        coverPreview: projetChoisi.cover || "", 
+        coverPreview: projetChoisi.cover || "",
         lien: projetChoisi.lien || "",
         snippet: projetChoisi.snippet || "",
         description: projetChoisi.description || "",
         tags: projetChoisi.tags || [],
         tools: projetChoisi.tools || [],
         pictures: projetChoisi.pictures || [],
-        picturesPreview: projetChoisi.pictures
-          ? projetChoisi.pictures.map((picture) => ({ preview: picture }))
-          : [],
+        picturesPreview: [],
         tagsInput: "",
         toolsInput: "",
         existingPictures: projetChoisi.pictures || [],
@@ -132,19 +129,26 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
 
   const handleRemovePicture = (index, isExisting = false) => {
     if (isExisting) {
-      
       setFormData((prevData) => {
-        const updatedExistingPictures = prevData.existingPictures.filter((_, i) => i !== index);
+        const updatedExistingPictures = prevData.existingPictures.filter(
+          (_, i) => i !== index
+        );
+        console.log(
+          "Existing pictures après suppression :",
+          updatedExistingPictures
+        );
         return {
           ...prevData,
           existingPictures: updatedExistingPictures,
         };
       });
     } else {
-      
       setFormData((prevData) => {
         const updatedPictures = prevData.pictures.filter((_, i) => i !== index);
-        const updatedPicturesPreview = prevData.picturesPreview.filter((_, i) => i !== index);
+        const updatedPicturesPreview = prevData.picturesPreview.filter(
+          (_, i) => i !== index
+        );
+        console.log("New pictures après suppression :", updatedPictures);
         return {
           ...prevData,
           pictures: updatedPictures,
@@ -160,8 +164,7 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
     e.preventDefault();
     const token = getCookie("token");
     const fd = new FormData();
-  
-    
+
     const projetObject = {
       title: formData.title,
       description: formData.description,
@@ -169,22 +172,19 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
       snippet: formData.snippet,
       tags: formData.tags,
       tools: formData.tools,
-      existingPictures: formData.existingPictures, 
+      existingPictures: formData.existingPictures,
     };
 
-    console.log(projetObject);
-  
-    
     fd.append("Projet", JSON.stringify(projetObject));
+
     if (formData.cover instanceof File) {
       fd.append("cover", formData.cover);
     }
-  
+
     formData.pictures.forEach((file) => {
-      fd.append("pictures", file); 
+      fd.append("pictures", file);
     });
-  
-  
+
     axios
       .put(`${apiUrl}/api/projets/${projetChoisi._id}`, fd, {
         headers: {
@@ -363,6 +363,16 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
             onChange={handleFileChange}
           />
           <div className="modaleModif__field--pictures">
+
+            {formData.existingPictures.map((picture, index) => (
+              <div key={`existing-${index}`} className="modaleModif__field--picitem">
+                <img src={picture} alt={`existing-${index}`} className="modaleModif__field--picture" />
+                <button type="button" className="modaleModif__field--picremove" onClick={() => handleRemovePicture(index, true)}>
+                  X
+                </button>
+              </div>
+            ))}
+
             {formData.picturesPreview.map((picture, index) => (
               <div key={index} className="modaleModif__field--picitem">
                 <img
