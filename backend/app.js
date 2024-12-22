@@ -23,9 +23,12 @@ app.use(express.json());
 
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  // Servir les fichiers statiques du frontend
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+  // Envoyer index.html pour toutes les autres requêtes (si pas d'API)
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
   });
 }
 
