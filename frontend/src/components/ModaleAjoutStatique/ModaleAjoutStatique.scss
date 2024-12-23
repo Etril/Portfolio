@@ -217,17 +217,18 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 20px;
+      width: 540px;
     }
 
     &--picture {
-      width: 75px;
       height: 100px;
       object-fit: cover;
+      width: 540px;
     }
 
     &--picitem {
       position: relative;
-      width: 75px;
+      width: 540px;
     }
 
     &--picremove {
