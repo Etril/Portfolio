@@ -53,7 +53,7 @@ useEffect (() => {axios.get(`${apiUrl}/api/projets/`)
                         cover={cover}
                         snippet={snippet}
                         index= {index}
-                        id_={_id}
+                        _id={_id}
                       />
                   </div>
                 ))}
