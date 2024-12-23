@@ -7,13 +7,13 @@
   align-items: center;
   overflow-y: auto;
 
-  &__message {
-    color: green;
-  }
-
   &__titre {
     font-size: 24px;
     margin-top: 100px;
+  }
+
+  &__message {
+    color: green;
   }
 
   input[type="text"] {
@@ -67,7 +67,7 @@
       gap: 5px;
       align-items: center;
       width: 100%;
-      height: 300px;
+      height: 400px;
       background-color: $secondary-background-color;
     }
 
@@ -94,9 +94,11 @@
     }
 
     &--coverimage {
-      height: 200px;
-      width: 130px;
-      object-fit: cover;
+      height: 300px;
+      width: 540px;
+      box-sizing: border-box;
+      padding: 10px;
+      object-fit: contain;
     }
 
     &--coverremove {
@@ -221,9 +223,9 @@
     }
 
     &--picture {
-      object-fit: cover;
-      height: 279px;
       width: 540px;
+      height: 279px;
+      object-fit: cover;
     }
 
     &--picitem {
@@ -296,6 +298,100 @@
 
 @media (max-width: 1024px) {
   .ModaleAjoutStatique {
+    padding: 15px;
+
+    &__titre {
+      margin-top: 50px;
+    }
+
+    input[type="text"],
+    input[type="url"] {
+      width: 100%;
+    }
+
+    &__form {
+      gap: 15px;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    &__field--coverfield {
+      height: 300px;
+    }
+
+    &__field--coverimage {
+      height: 184px;
+      width: 320px;
+    }
+
+    &__submit {
+      width: 200px;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ModaleAjoutStatique {
+    flex-direction: column;
+    padding: 10px;
+
+    &__titre {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="url"] {
+      font-size: 14px;
+      height: 30px;
+    }
+
+    textarea {
+      height: 120px;
+      width: 100%;
+    }
+
+    &__field--coverimage {
+      height: 184px;
+      width: 320px;
+    }
+
+    &__field--coverlabel {
+      width: 150px;
+      height: 30px;
+    }
+
+    &__submit {
+      height: 30px;
+    }
+
+    &__field--pictures {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__field--picture {
+      width: 320px;
+      height: 180px;
+    }
+
+    &__field--picitem {
+      width: 320px;
+    }
+
+    &__field--toolsinput button,
+    &__field--tagsinput button {
+      width: 100%;
+      margin: 0;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .ModaleAjoutStatique {
     padding: 15px; 
 
     &__titre {
@@ -320,20 +416,43 @@
     }
 
     &__field--coverimage {
-      width: 100%; 
-      height: auto; 
+      height: 184px; 
+      width: 320px;
     }
 
     &__submit {
       width: 200px; 
     }
-  }
+
+    &__field{
+
+      &--tag, &--tool {
+        font-size: 12px;
+        padding: 4px 10px; 
+        margin: 4px; 
+        border-radius: 15px; 
+    }  
 }
+  }
 
 @media (max-width: 767.98px) {
   .ModaleAjoutStatique {
     flex-direction: column; 
     padding: 10px; 
+
+    &__field {
+
+      &--tag, &--tool {
+        font-size: 12px;
+        padding: 4px 10px; 
+        margin: 4px; 
+        border-radius: 15px; 
+
+        p {
+          font-size: 18px;
+        }
+    }  
+  }
 
     &__titre {
       margin-top: 30px; 
@@ -351,13 +470,9 @@
       width: 100%; 
     }
 
-    &__field--coverfield {
-      height: 200px; 
-    }
-
     &__field--coverimage {
-        height: 184px; 
-        width: 320px;
+      height: 184px; 
+      width: 320px;
       
     }
 
@@ -373,11 +488,16 @@
     &__field--pictures {
       flex-direction: column; 
       align-items: center; 
+      width: 100%;
     }
 
     &__field--picture {
-      width: 50px; 
-      height: 70px; 
+      width: 320px; 
+      height: 180px; 
+    }
+
+    &__field--picitem {
+      width: 320px;
     }
 
     &__field--toolsinput button,
@@ -387,5 +507,6 @@
       margin-top: 20px;
     }
   }
+}
 }
 
