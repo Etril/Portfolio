@@ -18,7 +18,7 @@ function Projects () {
           compétences dans le domaine du Back-End et de la sécurité. 
         </p>
         <p>
-          La gallerie ci-dessous, générée dynamiquement à partir de la base de donnée contenant l'ensemble de mes projets, permet aussi de filtrer ceux-ci par des mots clés.
+          La galerie ci-dessous, générée dynamiquement à partir de la base de donnée contenant l'ensemble de mes projets, permet aussi de filtrer ceux-ci par des mots clés.
           Une fiche s'ouvre au clic, elle aussi générée dynamiquement, et permet d'obtenir plus d'informations sur chaque projet, les outils utilisés, les difficultés rencontrées et les enseignements que j'en retire. 
     
         </p>
