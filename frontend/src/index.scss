@@ -6,6 +6,11 @@ body {
     margin: 0;
     min-width: 320px;
     background-color: white;
+    height: 100%;
+}
+
+main {
+    min-height: calc(100vh - 209px);
 }
 
 h1, h2, h3, h4, h5, p, a {
