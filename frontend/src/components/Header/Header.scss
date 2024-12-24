@@ -46,7 +46,7 @@ header {
   }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1399.98px) {
   header {
     width: 100%;
     box-sizing: border-box;
@@ -61,6 +61,11 @@ header {
         line-height: 20px;
         text-align: left; 
         text-transform: none; 
+      }
+
+      button {
+        font-size: 1rem;
+        text-transform: none;
       }
     }
   }

@@ -39,7 +39,7 @@ function Statique() {
           <CardAjoutStatique />
           {tag === null
             ? projets.map(({ id, title, cover, snippet, _id}, index) => (
-              <div key={id} className="statique__card-container">
+              <div key={index} className="statique__card-container">
 
               <CardStatique
                 title={title}
@@ -54,7 +54,7 @@ function Statique() {
             : projets
                 .filter((projet) => projet.tags.includes(tag))
                 .map(({id, title, cover, snippet, _id}, index) => (
-                  <div key={id} className="statique__card-container">
+                  <div key={index} className="statique__card-container">
                   <CardStatique
                     title={title}
                     cover={cover}

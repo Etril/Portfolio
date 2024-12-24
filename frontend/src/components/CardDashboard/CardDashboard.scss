@@ -86,7 +86,33 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 1399.98px) {
+
+  .card {
+
+    width: 100%;
+    height: auto;
+    padding-bottom: 12px;
+
+    &__image {
+      width: 100%;
+      height: auto;
+    }
+
+    &__title {
+      text-align: center;
+    }
+
+    &__snippet {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
 
   .card {
 
