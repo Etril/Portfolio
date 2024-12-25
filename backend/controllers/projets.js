@@ -28,6 +28,9 @@ exports.postProjet = (req, res, next) => {
     const ProjetObject = JSON.parse(req.body.Projet);
     delete ProjetObject._id;
 
+    if (!req.coverUrl || !req.picturesUrls || req.picturesUrls.length === 0) {
+      return res.status(400).json({ error: "Les images sont obligatoires." });
+    }
  
     const coverUrl = req.coverUrl; 
     const picturesUrls = req.picturesUrls; 
