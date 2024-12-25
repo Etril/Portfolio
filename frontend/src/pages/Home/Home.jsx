@@ -23,10 +23,6 @@ useEffect (() => {axios.get(`${apiUrl}/api/projets/`)
   };
   
 
- 
-
-
-
   return (
     <main className="home">
       <section className="home__about">
