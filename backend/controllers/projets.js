@@ -55,13 +55,12 @@ exports.postProjet = (req, res, next) => {
 
 exports.putProjet = async (req, res, next) => {
   try {
-    // Parse le corps de la requête
+    
     const ProjetObject = JSON.parse(req.body.Projet);
     delete ProjetObject._id;
 
     console.log("Objet du projet après parsing :", ProjetObject);
 
-    // Récupérer le projet existant
     const Projet = await Projets.findOne({ _id: req.params.id });
     if (!Projet) {
       console.error("Projet non trouvé avec l'ID :", req.params.id);
@@ -73,7 +72,7 @@ exports.putProjet = async (req, res, next) => {
 
     console.log("URL de la cover existante :", existingCoverUrl);
 
-    // Vérifier si une nouvelle cover a été envoyée
+    
     if (req.files && req.files.cover) {
       newCoverUrl = req.coverUrl;
       console.log("Nouvelle cover reçue :", newCoverUrl);
@@ -93,7 +92,7 @@ exports.putProjet = async (req, res, next) => {
       console.log("Aucune nouvelle cover reçue.");
     }
 
-    // Récupérer les images existantes
+
     const projetPictures = Projet.pictures || [];
 
     console.log("Images du projet", projetPictures);
@@ -103,6 +102,16 @@ exports.putProjet = async (req, res, next) => {
     const newPictures = req.picturesUrls || [];
     const allPictures = [...existingPictures, ...newPictures];
 
+    // Vérification qu'au moins une image est envoyée 
+
+    if (allPictures.length === 0) {
+      console.error("Aucune image restante ou ajoutée après la mise à jour.");
+      return res.status(400).json({
+        error: "Vous devez conserver au moins une image ou en ajouter une nouvelle.",
+      });
+    }
+
+
     // Identifier les images à supprimer
     const picturesToDelete = projetPictures.filter(picture => 
       !newPictures.includes(picture) && !existingPictures.includes(picture)
@@ -110,13 +119,12 @@ exports.putProjet = async (req, res, next) => {
 
     console.log("Images à supprimer", picturesToDelete);
 
-    // Supprimer les images de Cloudinary et de la base de données
+    
     for (const picture of picturesToDelete) {
       const publicId = picture.split("/upload/")[1].split("/")[1].split(".")[0];
       const result = await cloudinary.uploader.destroy(publicId);
       console.log(`Résultat de la suppression de l'image ${picture} :`, result);
 
-      // Supprimer l'image de la base de données
       await Projets.updateOne(
         { _id: req.params.id },
         { $pull: { pictures: picture } }
@@ -125,7 +133,7 @@ exports.putProjet = async (req, res, next) => {
 
 
 
-    // Mettre à jour les images du projet
+
     const updatedProjet = await Projets.findOneAndUpdate(
       { _id: req.params.id },
       { ...ProjetObject, cover: newCoverUrl, pictures: allPictures },
