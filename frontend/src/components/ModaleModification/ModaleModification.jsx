@@ -20,6 +20,7 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
   });
 
   const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (projetChoisi) {
@@ -197,6 +198,7 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
       })
       .catch((error) => {
         console.log(error);
+        setError(`Erreur : ${error.response?.data?.error || error.message}`);
       });
   };
 
@@ -204,6 +206,7 @@ const ModaleModification = ({ projetChoisi, onUpdate }) => {
     <div className="modaleModif">
       <h2 className="modaleModif__titre"> Modifier un projet</h2>
       <p className="modaleModif__message"> {message} </p>
+      <p className="modaleAjout__error"> {error} </p>
       <form onSubmit={handleSubmit} className="modaleModif__form">
         <div className="modaleModif__field--coverfield">
           <div className="modaleModif__field--coverinput">

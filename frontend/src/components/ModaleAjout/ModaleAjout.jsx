@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./ModaleAjout.scss"
 import axios from "axios";
+import { use } from "react";
 
 const ModaleAjout = ({onUpdate}) => {
 
@@ -20,6 +21,7 @@ const ModaleAjout = ({onUpdate}) => {
   });
 
   const [message, setMessage] = useState(null);
+  const [error, setError]= useState(null);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -161,6 +163,7 @@ const ModaleAjout = ({onUpdate}) => {
     })
     .catch ((error) => {
       console.log(error)
+      setError(`Erreur : ${error.response?.data?.error || error.message}`);
     })
 
 
@@ -170,6 +173,7 @@ const ModaleAjout = ({onUpdate}) => {
     <div className="modaleAjout">
       <h2 className="modaleAjout__titre"> Ajouter un projet</h2>
       <p className="modaleAjout__message"> {message} </p>
+      <p className="modaleAjout__error"> {error} </p>
       <form onSubmit={handleSubmit} className="modaleAjout__form">
 
       <div className="modaleAjout__field--coverfield">

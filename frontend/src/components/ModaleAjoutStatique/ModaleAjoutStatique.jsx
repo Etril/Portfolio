@@ -17,6 +17,7 @@ const ModaleAjoutStatique = () => {
   });
 
   const [message, setMessage]= useState(null);
+  const [error, setError]= useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -105,13 +106,20 @@ const ModaleAjoutStatique = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError(null);
+    setMessage(null);
+    if (formData.pictures.length === 0) {
+      return setError("Une image au moins est obligatoire")
+    }
     setMessage("Le projet aurait bien été ajouté");
+    
   };
 
   return (
     <div className="ModaleAjoutStatique">
       <h2 className="ModaleAjoutStatique__titre"> Ajouter un projet</h2>
       <p className="ModaleAjoutStatique__message"> {message} </p>
+      <p className="ModaleAjoutStatique__error"> {error} </p>
       <form onSubmit={handleSubmit} className="ModaleAjoutStatique__form">
 
       <div className="ModaleAjoutStatique__field--coverfield">

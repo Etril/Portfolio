@@ -16,6 +16,7 @@ const ModaleModificationStatique = ({projetChoisi}) => {
   });
 
   const [message, setMessage]= useState(null);
+  const [error, setError]= useState(null);
 
   useEffect(() => {
     if (projetChoisi) {
@@ -121,6 +122,11 @@ const ModaleModificationStatique = ({projetChoisi}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError(null);
+    setMessage(null);
+    if (formData.pictures.length === 0) {
+      return setError("Une image au moins est obligatoire")
+    }
     setMessage("Le projet aurait bien été modifié")
     
   };
@@ -129,6 +135,7 @@ const ModaleModificationStatique = ({projetChoisi}) => {
     <div className="modaleModif">
       <h2 className="modaleModif__titre"> Modifier un projet </h2>
       <p className="modaleModif__message"> {message }</p>
+      <p className="ModaleAjoutStatique__error"> {error} </p>
       <form onSubmit={handleSubmit} className="modaleModif__form">
 
       <div className="modaleModif__field--coverfield">
